@@ -158,6 +158,7 @@ void nextDayKucing(struct kandangKucing **head){
 void extendAnjing(struct kandangAnjing **head, char username[], int hari){
 	struct anjing dog;
 	char temp[100];
+	char temp2[100];
 	char *token;
 	
 	FILE *kandang;
@@ -166,6 +167,7 @@ void extendAnjing(struct kandangAnjing **head, char username[], int hari){
 	tempKandang = fopen("tempKandangAnjing.txt", "w+");
 	
 	while(fgets(temp, sizeof(temp), kandang)){
+		strcpy(temp2, temp);
 		token = strtok(temp, ","); //Username
 		if(strcmp(token, username) == 0){
 			strcpy(dog.pemilik, token); //Username
@@ -180,7 +182,7 @@ void extendAnjing(struct kandangAnjing **head, char username[], int hari){
 			strcpy(dog.jenis, token); //Jenis
 			fprintf(tempKandang, "%s,%d,%s,%s,\n", dog.pemilik, dog.hari, dog.nama, dog.jenis);	
 		}
-		else fprintf(tempKandang, temp);
+		else fprintf(tempKandang, temp2);
 	}
 	fclose(kandang);
 	remove("kandangAnjing.txt");
@@ -197,6 +199,7 @@ void extendAnjing(struct kandangAnjing **head, char username[], int hari){
 void extendKucing(struct kandangKucing **head, char username[], int hari){
 	struct kucing cat;
 	char temp[100];
+	char temp2[100];
 	char *token;
 	
 	FILE *kandang;
@@ -205,6 +208,7 @@ void extendKucing(struct kandangKucing **head, char username[], int hari){
 	tempKandang = fopen("tempKandangKucing.txt", "w+");
 	
 	while(fgets(temp, sizeof(temp), kandang)){
+		strcpy(temp2, temp);
 		token = strtok(temp, ","); //Username
 		if(strcmp(token, username) == 0){
 			strcpy(cat.pemilik, token); //Username
@@ -219,7 +223,7 @@ void extendKucing(struct kandangKucing **head, char username[], int hari){
 			strcpy(cat.jenis, token); //Jenis
 			fprintf(tempKandang, "%s,%d,%s,%s,\n", cat.pemilik, cat.hari, cat.nama, cat.jenis);	
 		}
-		else fprintf(tempKandang, temp);
+		else fprintf(tempKandang, temp2);
 	}
 	fclose(kandang);
 	remove("kandangKucing.txt");
